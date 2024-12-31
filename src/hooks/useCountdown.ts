@@ -9,8 +9,7 @@ interface TimeLeft {
 
 export const useCountdown = (targetDate: Date) => {
   const calculateTimeLeft = (): TimeLeft => {
-    const now = new Date();
-    const difference = targetDate.getTime() - now.getTime();
+    const difference = targetDate.getTime() - new Date().getTime();
     
     if (difference <= 0) {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 };
