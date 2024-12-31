@@ -6,8 +6,8 @@ export default function App() {
   useFullscreen();
 
   return (
-    <div className="min-h-screen bg-[#00FF00]">
-      <main className="container mx-auto px-4 min-h-screen flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-[#00FF00] flex items-center justify-center">
+      <main className="w-full flex items-center justify-center">
         <CountdownDisplay />
       </main>
     </div>
