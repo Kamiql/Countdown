@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCountdown } from '../hooks/useCountdown';
 import { motion, AnimatePresence } from 'framer-motion';
+import { countdownAnimations } from './Countdown/countdownAnimations';
 
 interface TimeUnit {
   label: string;
@@ -8,7 +9,35 @@ interface TimeUnit {
 }
 
 export const CountdownDisplay: React.FC = () => {
-  const { days, hours, minutes, seconds } = useCountdown(new Date('2025-01-01T00:00:00'));
+  const { days, hours, minutes, seconds } = useCountdown(new Date('2024-12-31T22:34:00'));
+  const [isFinalFive, setIsFinalFive] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+
+  useEffect(() => {
+    const time = (days * 24 * 60 * 60) + (hours * 60 * 24) + (minutes * 60) + seconds;
+
+    if (seconds <= 5 && seconds > 0 && time <= 5) {
+      setIsFinalFive(true);
+    }
+    
+    if (time === 0) {
+      setIsFinished(true);
+    }
+  }, [days, hours, minutes, seconds]);
+
+  if (isFinished) {
+    return (
+      <div className="celebration-screen">
+        <motion.h1
+          {...countdownAnimations.bigText}
+          className="text-9xl font-bold text-gold"
+        >
+          2025
+        </motion.h1>
+        <div className="fireworks"></div>
+      </div>
+    );
+  }
 
   const timeUnits: TimeUnit[] = [
     { label: 'Days', value: days },
@@ -31,10 +60,7 @@ export const CountdownDisplay: React.FC = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={value}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              {...(isFinalFive ? countdownAnimations.enlarge : countdownAnimations.default)}
               className="text-7xl md:text-8xl lg:text-9xl font-space font-bold mb-2 text-gray-100"
             >
               {value.toString().padStart(2, '0')}
