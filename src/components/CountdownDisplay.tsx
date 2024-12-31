@@ -9,7 +9,7 @@ interface TimeUnit {
 }
 
 export const CountdownDisplay: React.FC = () => {
-  const { days, hours, minutes, seconds } = useCountdown(new Date('2024-12-31T22:34:00'));
+  const { days, hours, minutes, seconds } = useCountdown(new Date('2025-01-01T00:00:00Z'));
   const [isFinalFive, setIsFinalFive] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
