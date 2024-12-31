@@ -15,7 +15,7 @@ export const CountdownDisplay: React.FC = () => {
     { label: 'Hours', value: hours },
     { label: 'Minutes', value: minutes },
     { label: 'Seconds', value: seconds }
-  ];
+  ].filter(({ value }) => value > 0);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
