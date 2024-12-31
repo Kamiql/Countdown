@@ -15,7 +15,14 @@ export const CountdownDisplay: React.FC = () => {
     { label: 'Hours', value: hours },
     { label: 'Minutes', value: minutes },
     { label: 'Seconds', value: seconds }
-  ].filter(({ value }) => value > 0);
+  ].filter(({ value }) => value > 0)
+    .map(({ label, value }) => ({
+      label:
+        value === 1
+          ? label.slice(0, -1)
+          : label,
+      value
+    }));
 
   return (
     <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
