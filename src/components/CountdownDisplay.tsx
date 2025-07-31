@@ -8,7 +8,7 @@ interface TimeUnit {
 }
 
 export const CountdownDisplay: React.FC = () => {
-  const { days, hours, minutes, seconds } = useCountdown(new Date('2025-01-01T00:00:00'));
+  const { days, hours, minutes, seconds } = useCountdown(new Date('2025-08-30T00:00:00'));
 
   const timeUnits: TimeUnit[] = [
     { label: 'Days', value: days },

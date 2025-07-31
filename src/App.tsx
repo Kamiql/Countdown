@@ -18,7 +18,7 @@ export default function App() {
           <CountdownDisplay />
           
           <p className="mt-16 text-center font-space text-gray-400">
-            Countdown to January 1st, 2025
+            Countdown to August 30th, 2025
           </p>
         </main>
       </div>
